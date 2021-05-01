@@ -1,0 +1,123 @@
+{
+  "days": [
+    {
+      "id": 1,
+      "day": 1
+    },
+    {
+      "id": 2,
+      "day": 2
+    },
+    {
+      "id": 3,
+      "day": 3
+    }
+  ],
+  "words": [
+    {
+      "id": 1,
+      "day": 1,
+      "en": "resume",
+      "ko": "이력서",
+      "isDone": false
+    },
+    {
+      "id": 2,
+      "day": 1,
+      "en": "opening",
+      "ko": "공석",
+      "isDone": false
+    },
+    {
+      "id": 3,
+      "day": 1,
+      "en": "applicant",
+      "ko": "지원자",
+      "isDone": false
+    },
+    {
+      "id": 4,
+      "day": 1,
+      "en": "requirement",
+      "ko": "필요조건",
+      "isDone": false
+    },
+    {
+      "id": 5,
+      "day": 1,
+      "en": "meet",
+      "ko": "만족시키다",
+      "isDone": false
+    },
+    {
+      "id": 6,
+      "day": 2,
+      "en": "attire",
+      "ko": "복장",
+      "isDone": true
+    },
+    {
+      "id": 7,
+      "day": 2,
+      "en": "code",
+      "ko": "암호",
+      "isDone": false
+    },
+    {
+      "id": 8,
+      "day": 2,
+      "en": "concern",
+      "ko": "걱정",
+      "isDone": false
+    },
+    {
+      "id": 9,
+      "day": 2,
+      "en": "policy",
+      "ko": "규정",
+      "isDone": false
+    },
+    {
+      "id": 10,
+      "day": 2,
+      "en": "comply",
+      "ko": "따르다",
+      "isDone": false
+    },
+    {
+      "id": 11,
+      "day": 3,
+      "en": "accustomed",
+      "ko": "익숙한",
+      "isDone": true
+    },
+    {
+      "id": 12,
+      "day": 3,
+      "en": "corporation",
+      "ko": "주식회사",
+      "isDone": false
+    },
+    {
+      "id": 13,
+      "day": 3,
+      "en": "demanding",
+      "ko": "힘든",
+      "isDone": false
+    },
+    {
+      "id": 14,
+      "day": 3,
+      "en": "colleague",
+      "ko": "동료",
+      "isDone": false
+    },
+    {
+      "id": 15,
+      "day": 3,
+      "en": "division",
+      "ko": "부서",
+      "isDone": false
+    }
+  ]
+}
