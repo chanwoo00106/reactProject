@@ -19,7 +19,6 @@ const Detail = ({data}) => {
 
     useEffect(() => {
         const timer = setTimeout(() => { setAlert(false) }, 2000);
-        console.log('hi');
         return () => {
             clearTimeout(timer);
         }
