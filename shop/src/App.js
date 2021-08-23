@@ -4,6 +4,7 @@ import './App.css';
 import Card from './components/Card';
 import {Link, Route, Switch} from 'react-router-dom';
 import Detail from './components/Detail';
+import data from './db/data';
 
 function App() {
 
@@ -15,8 +16,8 @@ function App() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link> <Link to="/detail">Home</Link> </Nav.Link>
-              <Nav.Link> <Link to="/">Detail</Link> </Nav.Link>
+              <Nav.Link> <Link to="/">Home</Link> </Nav.Link>
+              <Nav.Link> <Link to="/detail">Detail</Link> </Nav.Link>
               <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
@@ -40,15 +41,11 @@ function App() {
               <Button variant="primary">Learn more</Button>
             </p>
           </div>
-          <Card />
+          <Card data={data} />
         </Route>
   
-        <Route path="/detail">
-          <Detail />
-        </Route>
-
-        <Route path="/:id">
-          <div>아아아아아아아아</div>
+        <Route path="/detail/:id">
+          <Detail data={data} />
         </Route>
 
       </Switch>

@@ -1,7 +1,6 @@
 import React from 'react';
-import data from '../db/data';
 
-const Card = () => {
+const Card = ({data}) => {
     return (
         <div className="container">
             <div className="row">
