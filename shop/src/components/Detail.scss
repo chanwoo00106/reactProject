@@ -1,0 +1,38 @@
+@import './reset.scss';
+
+@mixin func() {
+    background-color: #eeeeee;
+    padding: 20px;
+    border-radius: 5px;
+    max-width: 500px;
+    width: 100%;
+    margin: auto;
+}
+
+$mainColor : #ff0000;
+
+.red {
+    color: $mainColor;
+}
+
+.my-alert {
+    @include func();
+    p {
+        margin-bottom: 0;
+    }
+}
+
+.my-alert2 {
+    @extend .my-alert;
+    background-color: #ffe591;
+}
+
+
+// div.container {
+//     h4 {
+//         color: blue;
+//     }
+//     p {
+//         color: green;
+//     }
+// }
