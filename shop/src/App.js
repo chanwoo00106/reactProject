@@ -1,7 +1,7 @@
 import React from 'react';
 import {Navbar, Container, Nav, NavDropdown, Button} from 'react-bootstrap';
 import './App.css';
-import ShoesContainer from './components/ShoesContainer';
+import Card from './components/Card';
 
 function App() {
 
@@ -37,7 +37,7 @@ function App() {
         </p>
       </div>
 
-      <ShoesContainer />
+      <Card />
 
     </div>
   );
