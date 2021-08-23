@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import './Detail.scss';
@@ -15,6 +15,15 @@ const Box = styled.div`
 const Detail = ({data}) => {
     let history = useHistory();
     let id = Number(useParams().id);
+    const [alert, setAlert] = useState(true);
+
+    useEffect(() => {
+        const timer = setTimeout(() => { setAlert(false) }, 2000);
+        console.log('hi');
+        return () => {
+            clearTimeout(timer);
+        }
+    }, []);
 
     let shoes = data.find(shoes => shoes.id === id);
 
@@ -24,9 +33,10 @@ const Detail = ({data}) => {
                 <Box>
                     <h4 className="red">Detail</h4>
                 </Box>
-                <div className="my-alert2">
+                {alert && <div className="my-alert2">
                     <p>재고가 얼마 남지 않았습니다.</p>
-                </div>
+                </div>}
+
                 <div className="row">
                 <div className="col-md-6">
                     <img src={`https://codingapple1.github.io/shop/shoes${id + 1}.jpg`} alt="신발" width="100%" />
