@@ -2,6 +2,11 @@
   text-align: center;
 }
 
+a {
+  color: rgba(0,0,0,.55);
+  text-decoration: "none";
+}
+
 .background {
   background-image: url('./img/background.jpg');
   background-size: cover;

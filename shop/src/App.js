@@ -2,7 +2,8 @@ import React from 'react';
 import {Navbar, Container, Nav, NavDropdown, Button} from 'react-bootstrap';
 import './App.css';
 import Card from './components/Card';
-import {Link, Swtch, Route} from 'react-router-dom';
+import {Link, Route, Switch} from 'react-router-dom';
+import Detail from './components/Detail';
 
 function App() {
 
@@ -14,8 +15,8 @@ function App() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="#home">Home</Nav.Link>
-              <Nav.Link href="#link">Link</Nav.Link>
+              <Nav.Link> <Link to="/detail">Home</Link> </Nav.Link>
+              <Nav.Link> <Link to="/">Detail</Link> </Nav.Link>
               <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
@@ -27,35 +28,30 @@ function App() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-
-      <Route path="/" exact>
-        <div className="background">
-          <h1>20% Season Off</h1>
-          <p>
-            This is a sample hero unit, a simple Jumbotron-style components for calling extra attention to featured content or information.
-          </p>
-          <p>
-            <Button variant="primary">Learn more</Button>
-          </p>
-        </div>
-        <Card />
-      </Route>
-
-      <Route path="/detail">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-6">
-              <img src="https://codingapple1.github.io/shop/shoes1.jpg" alt="신발" width="100%" />
-            </div>
-            <div className="col-md-6 mt-4">
-              <h4 className="pt-5">상품명</h4>
-              <p>상품설명</p>
-              <p>120000원</p>
-              <button className="btn btn-danger">주문하기</button> 
-            </div>
+      
+      <Switch>
+        <Route exact path="/">
+          <div className="background">
+            <h1>20% Season Off</h1>
+            <p>
+              This is a sample hero unit, a simple Jumbotron-style components for calling extra attention to featured content or information.
+            </p>
+            <p>
+              <Button variant="primary">Learn more</Button>
+            </p>
           </div>
-        </div>
-      </Route>
+          <Card />
+        </Route>
+  
+        <Route path="/detail">
+          <Detail />
+        </Route>
+
+        <Route path="/:id">
+          <div>아아아아아아아아</div>
+        </Route>
+
+      </Switch>
 
     </div>
   );
