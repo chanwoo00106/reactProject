@@ -1,3 +1,4 @@
-# react 단어장 입니다
+# react project
 
-firebase 사용 예정
+* [word List](wordList)
+* [shopping page](shop)
