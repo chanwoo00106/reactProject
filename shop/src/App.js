@@ -2,6 +2,7 @@ import React from 'react';
 import {Navbar, Container, Nav, NavDropdown, Button} from 'react-bootstrap';
 import './App.css';
 import Card from './components/Card';
+import {Link, Swtch, Route} from 'react-router-dom';
 
 function App() {
 
@@ -27,17 +28,34 @@ function App() {
         </Container>
       </Navbar>
 
-      <div className="background">
-        <h1>20% Season Off</h1>
-        <p>
-          This is a sample hero unit, a simple Jumbotron-style components for calling extra attention to featured content or information.
-        </p>
-        <p>
-          <Button variant="primary">Learn more</Button>
-        </p>
-      </div>
+      <Route path="/" exact>
+        <div className="background">
+          <h1>20% Season Off</h1>
+          <p>
+            This is a sample hero unit, a simple Jumbotron-style components for calling extra attention to featured content or information.
+          </p>
+          <p>
+            <Button variant="primary">Learn more</Button>
+          </p>
+        </div>
+        <Card />
+      </Route>
 
-      <Card />
+      <Route path="/detail">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-6">
+              <img src="https://codingapple1.github.io/shop/shoes1.jpg" alt="신발" width="100%" />
+            </div>
+            <div className="col-md-6 mt-4">
+              <h4 className="pt-5">상품명</h4>
+              <p>상품설명</p>
+              <p>120000원</p>
+              <button className="btn btn-danger">주문하기</button> 
+            </div>
+          </div>
+        </div>
+      </Route>
 
     </div>
   );
