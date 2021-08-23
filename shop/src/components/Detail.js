@@ -1,5 +1,15 @@
 import React from 'react';
 import { useHistory, useParams } from 'react-router-dom';
+import styled from 'styled-components';
+
+const Box = styled.div`
+    padding-top: 20px;
+
+    h4 {
+        font-size: 25px;
+        color: ${props => props.color}
+    }
+`;
 
 const Detail = ({data}) => {
     let history = useHistory();
@@ -10,6 +20,9 @@ const Detail = ({data}) => {
     if (shoes){
         return (
             <div className="container">
+                <Box color="blue">
+                    <h4>Detail</h4>
+                </Box>
               <div className="row">
                 <div className="col-md-6">
                   <img src={`https://codingapple1.github.io/shop/shoes${id + 1}.jpg`} alt="신발" width="100%" />
