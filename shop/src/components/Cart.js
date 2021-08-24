@@ -1,7 +1,9 @@
 import React from 'react';
 import {Table} from 'react-bootstrap';
+import { connect } from 'react-redux';
 
-function Cart() {
+
+function Cart({state}) {
     return (
         <div>
             <Table striped bordered hover>
@@ -14,28 +16,22 @@ function Cart() {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>byun</td>
-                        <td>chanwoo</td>
-                        <td>chan</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>fat</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Tee</td>
-                        <td>mo</td>
-                        <td>@twitter</td>
-                    </tr>
+                    {state.map((state, i) => (
+                        <tr key={i}>
+                            <td>{i}</td>
+                            <td>{state.name}</td>
+                            <td>{state.count}</td>
+                            <td>{state.price}원</td>
+                        </tr>
+                    ))}
                 </tbody>
             </Table>
         </div>
     )
 }
 
-export default Cart
+export default connect(
+    (state) => ({
+        state
+    })
+)(Cart);
