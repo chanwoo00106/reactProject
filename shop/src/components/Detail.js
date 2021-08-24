@@ -5,6 +5,8 @@ import styled from 'styled-components';
 import './Detail.scss';
 import {inventoryContext} from '../App';
 import TabContent from './TabContent';
+import { CSSTransition } from 'react-transition-group';
+
 
 const Box = styled.div`
     padding-top: 20px;
@@ -21,6 +23,7 @@ const Detail = ({data}) => {
     let id = Number(useParams().id);
     const [alert, setAlert] = useState(true);
     const [tab, setTab] = useState(0);
+    const [switchs, setSwitch] = useState(false);
 
     useEffect(() => {
         const timer = setTimeout(() => { setAlert(false) }, 2000);
@@ -60,17 +63,19 @@ const Detail = ({data}) => {
                 
                 <Nav variant="tabs" defaultActiveKey="link-0">
                     <Nav.Item>
-                        <Nav.Link eventKey="link-0" onClick={() => setTab(0)}>Option 1</Nav.Link>
+                        <Nav.Link eventKey="link-0" onClick={() => {setSwitch(false); setTab(0)}}>Option 1</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link eventKey="link-1"onClick={() => setTab(1)}>Option 2</Nav.Link>
+                        <Nav.Link eventKey="link-1"onClick={() => {setSwitch(false); setTab(1)}}>Option 2</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link eventKey="link-2" onClick={() => setTab(2)}>Option 3</Nav.Link>
+                        <Nav.Link eventKey="link-2" onClick={() => {setSwitch(false); setTab(2)}}>Option 3</Nav.Link>
                     </Nav.Item>
                 </Nav>
-
-                <TabContent tab={tab} />
+                
+                <CSSTransition in={switchs} classNames="wow" timeout={500}>
+                    <TabContent tab={tab} switchs={switchs} setSwitch={setSwitch} />
+                </CSSTransition>
 
             </div>
         )

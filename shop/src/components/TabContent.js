@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
-const TabContent = ({tab}) => {
+const TabContent = ({tab,switchs ,setSwitch}) => {
+    useEffect(() => {
+        setSwitch(true);
+    })
     if (tab === 0) {
         return <div>000</div>
     } else if (tab === 1) {
