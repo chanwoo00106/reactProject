@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import './Detail.scss';
+import {inventoryContext} from '../App';
 
 const Box = styled.div`
     padding-top: 20px;
@@ -12,7 +13,8 @@ const Box = styled.div`
     }
 `;
 
-const Detail = ({data, inventory, setInventory}) => {
+const Detail = ({data}) => {
+    const inventory = useContext(inventoryContext);
     let history = useHistory();
     let id = Number(useParams().id);
     const [alert, setAlert] = useState(true);

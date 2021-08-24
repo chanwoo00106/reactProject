@@ -9,8 +9,9 @@ import Header from './components/Header';
 import axios from 'axios';
 
 
-function App() {
+export const inventoryContext =  React.createContext();
 
+function App() {
   const [Data, setData] = useState(data);
   const [inventory, setInventory] = useState([10, 11, 12]);
 
@@ -30,7 +31,10 @@ function App() {
             </p>
           </div>
           <div className="container">
-            <Card data={Data} />
+            <inventoryContext.Provider value={inventory}>
+              <Card data={Data} inventoryContext={inventoryContext} />
+            </inventoryContext.Provider>
+            
             <button className="btn btn-primary" onClick={() => {
               axios.get("https://codingapple1.github.io/shop/data2.json")
               .then(data => {
@@ -45,7 +49,9 @@ function App() {
         </Route>
   
         <Route path="/detail/:id">
-          <Detail data={Data} inventory={inventory} setInventory={setInventory} />
+          <inventoryContext.Provider value={inventory}>
+            <Detail data={Data} inventory={inventory} />
+          </inventoryContext.Provider>
         </Route>
 
       </Switch>
