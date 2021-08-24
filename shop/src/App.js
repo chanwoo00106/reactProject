@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import './App.css';
 import Card from './components/Card';
@@ -6,9 +6,12 @@ import { Route, Switch } from 'react-router-dom';
 import Detail from './components/Detail';
 import data from './db/data';
 import Header from './components/Header';
+import axios from 'axios';
 
 
 function App() {
+
+  const [Data, setData] = useState(data);
 
   return (
     <div className="App">
@@ -25,11 +28,23 @@ function App() {
               <Button variant="primary">Learn more</Button>
             </p>
           </div>
-          <Card data={data} />
+          <div className="container">
+            <Card data={Data} />
+            <button className="btn btn-primary" onClick={() => {
+              axios.get("https://codingapple1.github.io/shop/data2.json")
+              .then(data => {
+                setData([...Data, ...data.data]);
+              })
+              .catch(e => {
+                console.error(e);
+              })
+            }}>더보기</button>
+          </div>
+          
         </Route>
   
         <Route path="/detail/:id">
-          <Detail data={data} />
+          <Detail data={Data} />
         </Route>
 
       </Switch>
