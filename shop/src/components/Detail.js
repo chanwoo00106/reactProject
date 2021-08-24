@@ -12,7 +12,7 @@ const Box = styled.div`
     }
 `;
 
-const Detail = ({data}) => {
+const Detail = ({data, inventory, setInventory}) => {
     let history = useHistory();
     let id = Number(useParams().id);
     const [alert, setAlert] = useState(true);
@@ -44,7 +44,11 @@ const Detail = ({data}) => {
                     <h4 className="pt-5">{shoes.title}</h4>
                     <p>{shoes.content}</p>
                     <p>{shoes.price}</p>
-                    <button className="btn btn-danger">주문하기</button> 
+                    <p>재고 : {inventory[shoes.id]}</p>
+                    <button className="btn btn-danger" onClick={() => {
+                        // setInventory(...inventory, inventory[shoes.id] - 1)
+                        // 아니 이거 어떻게 해!!
+                    }}>주문하기</button>
                     <button className="btn btn-danger" onClick={() => history.goBack()}>뒤로가기</button> 
                 </div>
                 </div>

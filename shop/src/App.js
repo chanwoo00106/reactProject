@@ -12,6 +12,7 @@ import axios from 'axios';
 function App() {
 
   const [Data, setData] = useState(data);
+  const [inventory, setInventory] = useState([10, 11, 12]);
 
   return (
     <div className="App">
@@ -44,7 +45,7 @@ function App() {
         </Route>
   
         <Route path="/detail/:id">
-          <Detail data={Data} />
+          <Detail data={Data} inventory={inventory} setInventory={setInventory} />
         </Route>
 
       </Switch>
