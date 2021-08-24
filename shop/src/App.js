@@ -7,6 +7,7 @@ import Detail from './components/Detail';
 import data from './db/data';
 import Header from './components/Header';
 import axios from 'axios';
+import Cart from './components/Cart';
 
 
 export const inventoryContext =  React.createContext();
@@ -46,6 +47,10 @@ function App() {
             }}>더보기</button>
           </div>
           
+        </Route>
+
+        <Route path="/cart">
+          <Cart />
         </Route>
   
         <Route path="/detail/:id">
