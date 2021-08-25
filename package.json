@@ -1,0 +1,23 @@
+{
+  "name": "reactProject",
+  "version": "1.0.0",
+  "description": "* [word List](wordList)\r * [shopping page](shop)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chanwoo00106/reactProject.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chanwoo00106/reactProject/issues"
+  },
+  "homepage": "https://github.com/chanwoo00106/reactProject#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

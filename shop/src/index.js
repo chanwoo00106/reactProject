@@ -20,8 +20,6 @@ function reducer(state=initianlState, action){
         state.push({id: index++,...obj});
         return state;
       }
-      
-
     case 'up':
       const id = state.findIndex(x => x.id === action.id);
       const copy = [...state];
