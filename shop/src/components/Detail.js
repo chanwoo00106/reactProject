@@ -17,7 +17,7 @@ const Box = styled.div`
     }
 `;
 
-const Detail = ({data, counters, dispatch}) => {
+const Detail = ({data, state, dispatch}) => {
     let history = useHistory();
     let id = Number(useParams().id);
     const [alert, setAlert] = useState(true);
@@ -51,10 +51,10 @@ const Detail = ({data, counters, dispatch}) => {
                         <h4 className="pt-5">{shoes.title}</h4>
                         <p>{shoes.content}</p>
                         <p>{shoes.price}원</p>
-                        <p>재고 : {counters[id].count}</p>
+                        <p>재고 : </p>
                         <button className="btn btn-danger" onClick={() => {
-                            dispatch({type: '추가', payload: {id, name: shoes.title, price: shoes.price, count: 1}});
-                            dispatch({type: 'decrease', payload: {id}})
+                            dispatch({type: 'add', payload: {id, name: shoes.title, count: 1, price: shoes.price}});
+                            //dispatch({type: 'decrease', payload: {id}})
                             history.push('/cart')
                         }}>주문하기</button>
                         <button className="btn btn-danger" onClick={() => history.goBack()}>뒤로가기</button> 
@@ -87,7 +87,6 @@ const Detail = ({data, counters, dispatch}) => {
 
 export default connect(
     state => ({
-        goods: state.reducer,
-        counters: state.reducer2
+        state
     })
 )(Detail);

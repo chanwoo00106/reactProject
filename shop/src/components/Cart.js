@@ -1,12 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {Table} from 'react-bootstrap';
 import { connect } from 'react-redux';
 
 
-function Cart({goods, dispatch}) {
-    const [alert, setAlert] = useState(true);
-    console.log(goods)
-
+function Cart({data, dispatch}) {
     return (
         <div>
             <Table striped bordered hover>
@@ -20,37 +17,26 @@ function Cart({goods, dispatch}) {
                     </tr>
                 </thead>
                 <tbody>
-                    {goods.map((state, i) => (
+                    {data.map((x, i) => (
                         <tr key={i}>
-                            <td>{i}</td>
-                            <td>{state.name}</td>
-                            <td>{state.count}</td>
-                            <td>{state.price * state.count}원</td>
+                            <td>{x.id}</td>
+                            <td>{x.name}</td>
+                            <td>{x.count}</td>
+                            <td>{x.price}</td>
                             <td>
-                                <button onClick={() => {
-                                    dispatch({type: '증가', payload: {id: state.id}});
-                                    dispatch({type: 'decrease', payload: {id: state.id}});
-                                }}>+</button>
-                                <button onClick={() => {
-                                    dispatch({type: '감소', payload: {id: state.id}});
-                                    dispatch({type: 'increase', payload: {id: state.id}});
-                                }}>-</button>
+                                <button onClick={() => dispatch({type: 'up', id: x.id})}>+</button>
+                                <button onClick={() => dispatch({type: 'down', id: x.id})}>-</button>
                             </td>
                         </tr>
                     ))}
                 </tbody>
             </Table>
-            {alert && <div className="my-alert2">
-                <p>지금 구매하시면 티모스킨 50% 할인</p>
-                <button onClick={() => setAlert(false)}>닫기</button>
-            </div>}
         </div>
     )
 }
 
 export default connect(
-    (state) => ({
-        goods: state.reducer,
-    }),
-
-)(Cart);
+    state => ({
+        data: state
+    })
+)(Cart)
