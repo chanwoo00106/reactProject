@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 
 function Cart({goods, dispatch}) {
     const [alert, setAlert] = useState(true);
+    console.log(goods)
 
     return (
         <div>
@@ -26,8 +27,14 @@ function Cart({goods, dispatch}) {
                             <td>{state.count}</td>
                             <td>{state.price * state.count}원</td>
                             <td>
-                                <button onClick={() => dispatch({type: '증가', payload: {id: state.id}})}>+</button>
-                                <button onClick={() => dispatch({type: '감소', payload: {id: state.id}})}>-</button>
+                                <button onClick={() => {
+                                    dispatch({type: '증가', payload: {id: state.id}});
+                                    dispatch({type: 'decrease', payload: {id: state.id}});
+                                }}>+</button>
+                                <button onClick={() => {
+                                    dispatch({type: '감소', payload: {id: state.id}});
+                                    dispatch({type: 'increase', payload: {id: state.id}});
+                                }}>-</button>
                             </td>
                         </tr>
                     ))}

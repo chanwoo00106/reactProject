@@ -50,10 +50,10 @@ const Detail = ({data, counters, dispatch}) => {
                     <div className="col-md-6 mt-4">
                         <h4 className="pt-5">{shoes.title}</h4>
                         <p>{shoes.content}</p>
-                        <p>{shoes.price}</p>
+                        <p>{shoes.price}원</p>
                         <p>재고 : {counters[id].count}</p>
                         <button className="btn btn-danger" onClick={() => {
-                            dispatch({type: '추가', payload: {id: 2, name: shoes.title, price: shoes.price, count: 1}});
+                            dispatch({type: '추가', payload: {id, name: shoes.title, price: shoes.price, count: 1}});
                             dispatch({type: 'decrease', payload: {id}})
                             history.push('/cart')
                         }}>주문하기</button>

@@ -12,6 +12,7 @@ import Cart from './components/Cart';
 
 function App() {
   const [Data, setData] = useState(data);
+  const [showBtn, setShowBtn] = useState(true);
 
   return (
     <div className="App">
@@ -31,15 +32,16 @@ function App() {
           <div className="container">
             <Card data={Data} />
             
-            <button className="btn btn-primary" onClick={() => {
+            {showBtn && <button className="btn btn-primary" onClick={() => {
               axios.get("https://codingapple1.github.io/shop/data2.json")
               .then(data => {
                 setData([...Data, ...data.data]);
+                setShowBtn(false);
               })
               .catch(e => {
                 console.error(e);
               })
-            }}>더보기</button>
+            }}>더보기</button>}
           </div>
           
         </Route>

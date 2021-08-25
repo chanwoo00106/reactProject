@@ -8,24 +8,26 @@ import { combineReducers, createStore } from 'redux';
 
 
 
-const initialState = [
-  {id: 0, name: '신발', price: 120000, count: 1},
-  {id: 1, name: "김성훈", price: 100, count: 1}
-]
+const initialState = []
 const count = [
   {id: 0, count: 10},
-  {id: 1, count: 10},
-  {id: 2, count: 10},
-  {id: 3, count: 10},
-  {id: 4, count: 10},
-  {id: 5, count: 10},
+  {id: 1, count: 11},
+  {id: 2, count: 12},
+  {id: 3, count: 13},
+  {id: 4, count: 14},
+  {id: 5, count: 15},
 ];
 
 function reducer(state = initialState, action) {
   switch (action.type) {
     case '증가':
-      const copy = [...state];
-      copy[action.payload.id].count++;
+      console.log(action.payload.id);
+      const copy = [...state].forEach(x => {
+        console.log(x.count)
+        if (x.id === action.payload.id) {
+          x.count++;
+        }
+      });
       return copy;
     case '감소':
       const copy2 = [...state];
@@ -42,12 +44,21 @@ function reducer(state = initialState, action) {
 function reducer2(state=count, action){
   switch (action.type){
     case 'decrease':
-      const result = state.find(x => x.id === action.payload.id);
-      
+      const result = state.findIndex(x => x.id === action.payload.id);
+      console.log(result);
       const copy = [...state];
-      copy[result.id].count--;
+      copy[result].count--;
       return copy;
-      
+
+    case 'increase':
+      const copy2 = [...state];
+      copy2.forEach(x => {
+        if (x.id === action.payload.id) {
+          x.count++;
+        }
+      });
+      return copy2;
+
     default: return state;
   }
 }
