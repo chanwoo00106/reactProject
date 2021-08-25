@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {Nav} from 'react-bootstrap';
 import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import './Detail.scss';
-import {inventoryContext} from '../App';
 import TabContent from './TabContent';
 import { CSSTransition } from 'react-transition-group';
+import { connect } from 'react-redux';
 
 
 const Box = styled.div`
@@ -17,8 +17,7 @@ const Box = styled.div`
     }
 `;
 
-const Detail = ({data}) => {
-    const inventory = useContext(inventoryContext);
+const Detail = ({data, counters, dispatch}) => {
     let history = useHistory();
     let id = Number(useParams().id);
     const [alert, setAlert] = useState(true);
@@ -52,10 +51,11 @@ const Detail = ({data}) => {
                         <h4 className="pt-5">{shoes.title}</h4>
                         <p>{shoes.content}</p>
                         <p>{shoes.price}</p>
-                        <p>재고 : {inventory[shoes.id]}</p>
+                        <p>재고 : {counters[id].count}</p>
                         <button className="btn btn-danger" onClick={() => {
-                            // setInventory(...inventory, inventory[shoes.id] - 1)
-                            // 아니 이거 어떻게 해!!
+                            dispatch({type: '추가', payload: {id: 2, name: shoes.title, price: shoes.price, count: 1}});
+                            dispatch({type: 'decrease', payload: {id}})
+                            history.push('/cart')
                         }}>주문하기</button>
                         <button className="btn btn-danger" onClick={() => history.goBack()}>뒤로가기</button> 
                     </div>
@@ -85,4 +85,9 @@ const Detail = ({data}) => {
     }
 }
 
-export default Detail;
+export default connect(
+    state => ({
+        goods: state.reducer,
+        counters: state.reducer2
+    })
+)(Detail);

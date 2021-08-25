@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {Table} from 'react-bootstrap';
 import { connect } from 'react-redux';
 
 
-function Cart({goods, alert, dispatch}) {
+function Cart({goods, dispatch}) {
+    const [alert, setAlert] = useState(true);
+
     return (
         <div>
             <Table striped bordered hover>
@@ -22,10 +24,10 @@ function Cart({goods, alert, dispatch}) {
                             <td>{i}</td>
                             <td>{state.name}</td>
                             <td>{state.count}</td>
-                            <td>{state.price}원</td>
+                            <td>{state.price * state.count}원</td>
                             <td>
-                                <button onClick={() => dispatch({type: '증가'})}>+</button>
-                                <button onClick={() => dispatch({type: '감소'})}>-</button>
+                                <button onClick={() => dispatch({type: '증가', payload: {id: state.id}})}>+</button>
+                                <button onClick={() => dispatch({type: '감소', payload: {id: state.id}})}>-</button>
                             </td>
                         </tr>
                     ))}
@@ -33,7 +35,7 @@ function Cart({goods, alert, dispatch}) {
             </Table>
             {alert && <div className="my-alert2">
                 <p>지금 구매하시면 티모스킨 50% 할인</p>
-                <button onClick={() => dispatch({type: '닫기'})}>닫기</button>
+                <button onClick={() => setAlert(false)}>닫기</button>
             </div>}
         </div>
     )
@@ -42,7 +44,6 @@ function Cart({goods, alert, dispatch}) {
 export default connect(
     (state) => ({
         goods: state.reducer,
-        alert: state.reducer2
     }),
 
 )(Cart);

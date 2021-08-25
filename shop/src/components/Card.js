@@ -1,8 +1,8 @@
-import React, {useContext} from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-const Card = ({data, inventoryContext}) => {
-    const inventory = useContext(inventoryContext);
+const Card = ({data, counters}) => {
 
     return (
         <div className="row">
@@ -13,11 +13,15 @@ const Card = ({data, inventoryContext}) => {
                         <h4>{shoes.title}</h4>
                     </Link>
                     <p>{shoes.content} & {shoes.price}</p>
-                    <p>{inventory[shoes.id]}</p>
+                    <p>{counters[shoes.id].count}</p>
                 </div>
             ))}
         </div>
     )
 }
 
-export default Card;
+export default connect(
+    state => ({
+        counters: state.reducer2
+    })
+)(Card);

@@ -10,11 +10,8 @@ import axios from 'axios';
 import Cart from './components/Cart';
 
 
-export const inventoryContext =  React.createContext();
-
 function App() {
   const [Data, setData] = useState(data);
-  const [inventory, setInventory] = useState([10, 11, 12]);
 
   return (
     <div className="App">
@@ -32,9 +29,7 @@ function App() {
             </p>
           </div>
           <div className="container">
-            <inventoryContext.Provider value={inventory}>
-              <Card data={Data} inventoryContext={inventoryContext} />
-            </inventoryContext.Provider>
+            <Card data={Data} />
             
             <button className="btn btn-primary" onClick={() => {
               axios.get("https://codingapple1.github.io/shop/data2.json")
@@ -54,9 +49,7 @@ function App() {
         </Route>
   
         <Route path="/detail/:id">
-          <inventoryContext.Provider value={inventory}>
-            <Detail data={Data} inventory={inventory} />
-          </inventoryContext.Provider>
+          <Detail data={Data} />
         </Route>
 
       </Switch>
