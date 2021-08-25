@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
-import { createStore } from 'redux';
+import { combineReducers, createStore } from 'redux';
 
 
 
@@ -12,6 +12,7 @@ const initialState = [
   {id: 0, name: '신발', count: 10, price: 120000},
   {id: 1, name: "김성훈", count: 1, price: 100}
 ]
+const alert = true;
 
 function reducer(state = initialState, action) {
   switch (action.type) {
@@ -27,7 +28,15 @@ function reducer(state = initialState, action) {
   }
 }
 
-const store = createStore(reducer);
+function reducer2(state=alert, action){
+  switch (action.type){
+    case '닫기':
+      return !state;
+    default: return state;
+  }
+}
+
+const store = createStore(combineReducers({reducer, reducer2}));
 
 ReactDOM.render(
   <React.StrictMode>
