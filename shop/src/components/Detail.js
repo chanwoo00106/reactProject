@@ -53,8 +53,7 @@ const Detail = ({data, state, dispatch}) => {
                         <p>{shoes.price}원</p>
                         <p>재고 : </p>
                         <button className="btn btn-danger" onClick={() => {
-                            dispatch({type: 'add', payload: {id, name: shoes.title, count: 1, price: shoes.price}});
-                            //dispatch({type: 'decrease', payload: {id}})
+                            dispatch({type: 'add', payload: {name: shoes.title, count: 1, price: shoes.price}});
                             history.push('/cart')
                         }}>주문하기</button>
                         <button className="btn btn-danger" onClick={() => history.goBack()}>뒤로가기</button> 

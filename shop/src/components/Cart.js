@@ -1,15 +1,17 @@
 import React from 'react';
 import {Table} from 'react-bootstrap';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 
 function Cart({data, dispatch}) {
+    const history = useHistory();
     return (
         <div>
             <Table striped bordered hover>
                 <thead>
                     <tr>
-                        <th>#</th>
+                        <th>번호</th>
                         <th>상품명</th>
                         <th>수량</th>
                         <th>가격</th>
@@ -22,7 +24,7 @@ function Cart({data, dispatch}) {
                             <td>{x.id}</td>
                             <td>{x.name}</td>
                             <td>{x.count}</td>
-                            <td>{x.price}</td>
+                            <td>{x.price * x.count}원</td>
                             <td>
                                 <button onClick={() => dispatch({type: 'up', id: x.id})}>+</button>
                                 <button onClick={() => dispatch({type: 'down', id: x.id})}>-</button>
@@ -31,6 +33,7 @@ function Cart({data, dispatch}) {
                     ))}
                 </tbody>
             </Table>
+            <button className="btn btn-danger" onClick={() => history.push('/')}>Home</button>
         </div>
     )
 }
