@@ -9,7 +9,7 @@ export const Nickname = styled.div`
   height: 100vh;
 `;
 
-export const Contents = styled.div`
+export const Contents = styled.form`
   background: #fff;
   width: 35rem;
   height: 20rem;
@@ -29,10 +29,15 @@ export const Title = styled.h1`
 export const Input = styled.input`
   font-size: 1.2rem;
   padding: 10px;
-  border: 2px solid #218fff;
+  border: 2px solid #e2e2e2;
   border-radius: 5px;
   outline: none;
   box-sizing: border-box;
-  box-shadow: 0 0 10px #218fff;
   width: 70%;
+  transition: 0.2s;
+
+  :focus {
+    border: 2px solid #218fff;
+    box-shadow: 0 0 10px #218fff;
+  }
 `;

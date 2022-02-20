@@ -7,7 +7,7 @@ export const change = (value: string) => ({
 
 type ActionType = ReturnType<typeof change>;
 
-const initialState: string = "";
+const initialState: string = localStorage.getItem("nickname") || "";
 
 export default function nickname(
   state: string = initialState,
