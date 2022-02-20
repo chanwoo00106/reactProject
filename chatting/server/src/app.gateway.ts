@@ -1,4 +1,5 @@
 import {
+  ConnectedSocket,
   MessageBody,
   SubscribeMessage,
   WebSocketGateway,
@@ -13,7 +14,8 @@ export class AppGateway {
   @WebSocketServer() server: Socket;
 
   @SubscribeMessage('test')
-  handleTest(@MessageBody() data: string) {
+  handleTest(@MessageBody() data: string, @ConnectedSocket() socket: Socket) {
     console.log('test', data);
+    socket.emit('test', `thank you ${data}`);
   }
 }
