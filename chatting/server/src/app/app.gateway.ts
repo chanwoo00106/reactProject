@@ -10,7 +10,7 @@ import {
 } from '@nestjs/websockets';
 import { nanoid } from 'nanoid';
 import { Socket } from 'socket.io';
-import { CreateRoom, JoinedRoom } from './dto';
+import { CreateRoom, JoinedRoom, Message } from './dto';
 
 import rooms from '../rooms.data';
 import users from '../users.data';
@@ -45,6 +45,29 @@ export class AppGateway implements OnGatewayDisconnect, OnGatewayConnection {
     users[socket.id] = { joinRoom: key };
     socket.emit('SUCCESS_JOINED', { key, name });
     socket.broadcast.emit('NEW_ROOM', rooms);
+  }
+
+  @SubscribeMessage('LEAVE_ROOM')
+  leaveRoom(@ConnectedSocket() socket: Socket): void {
+    const joinRoom = users[socket.id]?.joinRoom;
+    if (!joinRoom) return;
+    socket.leave(joinRoom);
+    socket.emit('SUCCESS_LEAVE');
+    rooms[joinRoom].people -= 1;
+
+    if (rooms[joinRoom].people === 0) {
+      delete rooms[joinRoom];
+      socket.broadcast.emit('NEW_ROOM', rooms);
+    }
+  }
+
+  @SubscribeMessage('SEND_MESSAGE')
+  sendMessage(
+    @MessageBody() { message, key }: Message,
+    @ConnectedSocket() socket: Socket,
+  ) {
+    console.log(socket.rooms);
+    socket.broadcast.to(key).emit('SEND_MESSAGE', { message });
   }
 
   handleConnection(client: Socket) {

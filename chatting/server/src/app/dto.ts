@@ -17,3 +17,13 @@ export class JoinedRoom {
   @MaxLength(10)
   name: string;
 }
+
+export class Message {
+  @IsString()
+  @IsNotEmpty()
+  message: string;
+
+  @IsString()
+  @IsNotEmpty()
+  key: string;
+}
