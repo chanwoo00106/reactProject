@@ -13,6 +13,6 @@ export class AppController {
 
   @Get('rooms')
   getRooms(): RoomsType {
-    return this.getRooms();
+    return this.appService.getRooms();
   }
 }

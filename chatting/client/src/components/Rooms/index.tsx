@@ -1,8 +1,18 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import api from "../../lib/api";
+import RoomsType from "../../types/RoomsType";
 import * as S from "./styles";
 
 export default function Rooms() {
   const [value, setValue] = useState<string>("");
+  const [rooms, setRooms] = useState<RoomsType>({});
+
+  useEffect(() => {
+    (async () => {
+      const { data } = await api.get("/rooms");
+      setRooms(data);
+    })();
+  });
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) =>
     setValue(e.target.value.trim());
@@ -17,10 +27,12 @@ export default function Rooms() {
       <S.Contents>
         <S.Top>Chatting | Rooms</S.Top>
         <S.Center>
-          <S.Room>
-            <S.RoomName>졸리다</S.RoomName>
-            <S.RoomPeople>8명</S.RoomPeople>
-          </S.Room>
+          {Object.keys(rooms).map((key) => (
+            <S.Room key={key}>
+              <S.RoomName>{rooms[key].name}</S.RoomName>
+              <S.RoomPeople>{rooms[key].people}명</S.RoomPeople>
+            </S.Room>
+          ))}
         </S.Center>
         <S.Bottom onSubmit={onSubmit}>
           <S.Input
