@@ -20,15 +20,15 @@ export class AppGateway implements OnGatewayDisconnect, OnGatewayConnection {
   @WebSocketServer() io: Socket;
 
   @SubscribeMessage('CREATE_ROOM')
-  handleTest(
+  createRoom(
     @MessageBody() { name }: CreateRoom,
     @ConnectedSocket() socket: Socket,
   ) {
     const key: string = nanoid();
     rooms[key] = { name, people: 1 };
-    socket.emit('CREATE_ROOM', rooms);
+    socket.emit('CREATE_ROOM', { key, name });
     socket.join(key);
-    socket.broadcast.emit('CREATE_ROOM', rooms);
+    socket.broadcast.emit('NEW_ROOM', rooms);
   }
 
   handleConnection(client: Socket) {

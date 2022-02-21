@@ -8,7 +8,7 @@ function App() {
     nickname,
   }));
 
-  return <div>{!nickname ? <Nickname /> : <Rooms />}</div>;
+  return <>{!nickname ? <Nickname /> : <Rooms />}</>;
 }
 
 export default App;

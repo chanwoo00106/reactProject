@@ -1,7 +1,8 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import api from "../../lib/api";
 import { RootState } from "../../module";
+import { joined_room } from "../../module/myRoom";
 import RoomsType from "../../types/RoomsType";
 import * as S from "./styles";
 
@@ -11,10 +12,15 @@ export default function Rooms() {
   const { socket } = useSelector((state: RootState) => ({
     socket: state.socket,
   }));
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    socket?.on("CREATE_ROOM", (rooms) => {
+    socket?.on("NEW_ROOM", (rooms) => {
       setRooms(rooms);
+    });
+
+    socket?.on("CREATE_ROOM", ({ key, name }) => {
+      dispatch(joined_room(key, name));
     });
 
     (async () => {
