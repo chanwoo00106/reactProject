@@ -24,6 +24,12 @@ export const Contents = styled.form`
 export const Title = styled.h1`
   font-size: 3rem;
   margin: 0;
+  transition: 0.2s;
+
+  :hover {
+    color: #218fff;
+    text-shadow: 0 0 10px #70b7ff;
+  }
 `;
 
 export const Input = styled.input`
@@ -32,7 +38,6 @@ export const Input = styled.input`
   border: 2px solid #e2e2e2;
   border-radius: 5px;
   outline: none;
-  box-sizing: border-box;
   width: 70%;
   transition: 0.2s;
 
