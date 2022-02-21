@@ -1,13 +1,22 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import api from "../../lib/api";
+import { RootState } from "../../module";
 import RoomsType from "../../types/RoomsType";
 import * as S from "./styles";
 
 export default function Rooms() {
-  const [value, setValue] = useState<string>("");
+  const [name, setName] = useState<string>("");
   const [rooms, setRooms] = useState<RoomsType>({});
+  const { socket } = useSelector((state: RootState) => ({
+    socket: state.socket,
+  }));
 
   useEffect(() => {
+    socket?.on("CREATE_ROOM", (rooms) => {
+      setRooms(rooms);
+    });
+
     (async () => {
       const { data } = await api.get("/rooms");
       setRooms(data);
@@ -15,11 +24,12 @@ export default function Rooms() {
   });
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) =>
-    setValue(e.target.value.trim());
+    setName(e.target.value.trim());
 
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setValue("");
+    socket?.emit("CREATE_ROOM", { name });
+    setName("");
   };
 
   return (
@@ -37,7 +47,7 @@ export default function Rooms() {
         <S.Bottom onSubmit={onSubmit}>
           <S.Input
             placeholder="방 이름 입력 (최대 10글자)"
-            value={value}
+            value={name}
             onChange={onChange}
             maxLength={10}
           />

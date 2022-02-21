@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import rooms, { RoomsType } from './rooms.data';
+import rooms, { RoomsType } from '../rooms.data';
 
 @Injectable()
 export class AppService {
