@@ -59,7 +59,7 @@ export const RoomPeople = styled.div`
   font-size: 1.1rem;
 `;
 
-export const Bottom = styled.div`
+export const Bottom = styled.form`
   width: 100%;
   height: 9.1%;
   display: grid;
