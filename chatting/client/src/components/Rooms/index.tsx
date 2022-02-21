@@ -19,6 +19,10 @@ export default function Rooms() {
       setRooms(rooms);
     });
 
+    socket?.on("SUCCESS_JOINED", ({ key, name }) => {
+      dispatch(joined_room(key, name));
+    });
+
     socket?.on("CREATE_ROOM", ({ key, name }) => {
       dispatch(joined_room(key, name));
     });
@@ -38,13 +42,17 @@ export default function Rooms() {
     setName("");
   };
 
+  const onClick = (key: string, name: string) => {
+    socket?.emit("JOINED_ROOM", { key, name });
+  };
+
   return (
     <S.Wrapper>
       <S.Contents>
         <S.Top>Chatting | Rooms</S.Top>
         <S.Center>
           {Object.keys(rooms).map((key) => (
-            <S.Room key={key}>
+            <S.Room key={key} onClick={() => onClick(key, rooms[key].name)}>
               <S.RoomName>{rooms[key].name}</S.RoomName>
               <S.RoomPeople>{rooms[key].people}명</S.RoomPeople>
             </S.Room>
