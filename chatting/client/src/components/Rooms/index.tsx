@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import api from "../../lib/api";
@@ -27,11 +28,20 @@ export default function Rooms() {
       dispatch(joined_room(key, name));
     });
 
+    socket?.on("SOME_LEAVE_ROOM", ({ room }) => {
+      setRooms({
+        ...rooms,
+        [room]: {
+          people: rooms[room].people - 1,
+        },
+      });
+    });
+
     (async () => {
       const { data } = await api.get("/rooms");
       setRooms(data);
     })();
-  });
+  }, []);
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) =>
     setName(e.target.value.trim());

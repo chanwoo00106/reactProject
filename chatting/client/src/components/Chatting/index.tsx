@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { GrNext } from "react-icons/gr";
 import * as S from "./styles";
 import * as RoomS from "../Rooms/styles";
@@ -25,7 +26,7 @@ export default function Chatting() {
     socket?.on("SEND_MESSAGE", ({ message }) => {
       setMessages([...messages, message]);
     });
-  });
+  }, []);
 
   const onClick = () => {
     socket?.emit("LEAVE_ROOM");

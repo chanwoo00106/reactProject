@@ -53,6 +53,7 @@ export class AppGateway implements OnGatewayDisconnect, OnGatewayConnection {
     if (!joinRoom) return;
     socket.leave(joinRoom);
     socket.emit('SUCCESS_LEAVE');
+    socket.broadcast.emit('SOME_LEAVE_ROOM', { room: joinRoom });
     rooms[joinRoom].people -= 1;
 
     if (rooms[joinRoom].people === 0) {
@@ -67,6 +68,7 @@ export class AppGateway implements OnGatewayDisconnect, OnGatewayConnection {
     @ConnectedSocket() socket: Socket,
   ) {
     console.log(socket.rooms);
+    console.log(message);
     socket.broadcast.to(key).emit('SEND_MESSAGE', { message });
   }
 
@@ -77,6 +79,8 @@ export class AppGateway implements OnGatewayDisconnect, OnGatewayConnection {
   handleDisconnect(client: Socket) {
     Logger.log(`disconnect ${client.id}`);
     const joinRoom: string = users[client.id]?.joinRoom;
+
+    console.log(joinRoom);
 
     if (joinRoom) {
       rooms[joinRoom].people -= 1;
