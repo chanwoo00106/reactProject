@@ -1,15 +1,68 @@
 {
+  "root": true,
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "jest": true
+  },
   "extends": [
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
+    "plugin:react/recommended",
     "plugin:prettier/recommended",
-    "react-app",
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended"
+    "prettier"
   ],
-  "plugins": ["react", "@typescript-eslint"],
+  "plugins": ["prettier"],
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
   "rules": {
-    "@typescript-eslint/interface-name-prefix": "on",
-    "@typescript-eslint/explicit-function-return-type": "on",
-    "@typescript-eslint/explicit-module-boundary-types": "on",
-    "@typescript-eslint/no-explicit-any": "on"
+    "indent": "off",
+    "camelcase": "off",
+    "semi": "off",
+    "quotes": "off",
+    "no-shadow": "off",
+    "no-use-before-define": "off",
+    "no-unused-vars": "off",
+    "no-console": "off",
+    "no-magic-numbers": "off",
+    "no-redeclare": "off",
+    "no-array-constructor": "off",
+    "no-dupe-class-members": "off",
+    "no-extra-semi": "off",
+    "no-empty-function": "off",
+    "linebreak-style": "off",
+    "prettier/prettier": "off",
+    "jsx-a11y/no-noninteractive-element-interactions": "off",
+    "import/extensions": "off",
+    "import/no-unresolved": "off",
+    "import/no-extraneous-dependencies": "off",
+    "import/prefer-default-export": "off",
+    "import/no-named-as-default": "off",
+    /* react options */
+    "react/prop-types": "off",
+    "react/display-name": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/destructuring-assignment": "off",
+    "react/no-array-index-key": "off",
+    "react/jsx-filename-extension": [
+      2,
+      { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
+    ],
+    "react/function-component-definition": 2,
+    /* prettier */
+    "prettier/prettier": "error"
+  },
+  "ignorePatterns": ["node_modules/"],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   }
 }
